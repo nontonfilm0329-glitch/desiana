@@ -1,1 +1,740 @@
-my.desiana.id
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Desiana</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6F2;
+    --blush:#FFD3DA;
+    --rose:#E8637D;
+    --deep-rose:#C94F68;
+    --lavender:#CDB4E0;
+    --gold:#F6C453;
+    --ink:#4A3B42;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+    font-family:'Quicksand', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .deck{
+    position:relative;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+  }
+  .slide{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.6s ease;
+    overflow:hidden;
+  }
+  .slide.active{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  /* ---------- SLIDE 1 ---------- */
+  #slide1{
+    background: linear-gradient(180deg, #FFF6F2 0%, #FFE3EA 100%);
+  }
+  .hero-text{
+    font-family:'Dancing Script', cursive;
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    color: var(--deep-rose);
+    text-shadow: 0 2px 20px rgba(232,99,125,0.25);
+    z-index: 5;
+    animation: heroPop 1.2s ease;
+  }
+  @keyframes heroPop{
+    0%{ transform: scale(0.6); opacity:0; }
+    60%{ transform: scale(1.08); opacity:1; }
+    100%{ transform: scale(1); }
+  }
+  .hero-sub{
+    margin-top:10px;
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    color: var(--ink);
+    opacity:0.75;
+    z-index:5;
+  }
+  .flower{
+    position:absolute;
+    top:-60px;
+    font-size: 28px;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    user-select:none;
+    z-index:1;
+  }
+  @keyframes fall{
+    0%{ transform: translateY(0) rotate(0deg); opacity:0.9;}
+    100%{ transform: translateY(110vh) rotate(360deg); opacity:0.9;}
+  }
+  .next-btn{
+    margin-top:36px;
+    z-index:5;
+    border:none;
+    background: var(--rose);
+    color:white;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    padding:14px 34px;
+    border-radius:40px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(232,99,125,0.35);
+    transition: transform 0.2s ease;
+  }
+  .next-btn:hover{ transform: translateY(-3px) scale(1.03); }
+
+  /* ---------- SLIDE 2 ---------- */
+  #slide2{
+    background: linear-gradient(160deg, #FFEFE0 0%, #FFD9E6 60%, #F3D9FF 100%);
+  }
+  .bg-emoji{
+    position:absolute;
+    font-size:22px;
+    animation-name: bob;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    opacity:0.85;
+    user-select:none;
+    z-index:1;
+  }
+  @keyframes bob{
+    0%,100%{ transform: translateY(0) rotate(-8deg); }
+    50%{ transform: translateY(-26px) rotate(8deg); }
+  }
+  .gift-wrap{ z-index:5; display:flex; flex-direction:column; align-items:center; }
+  .gift-box{
+    font-size: clamp(70px, 18vw, 120px);
+    cursor:pointer;
+    animation: giftIdle 1.6s ease-in-out infinite;
+    transition: transform 0.25s ease;
+    filter: drop-shadow(0 10px 18px rgba(180,90,120,0.35));
+  }
+  @keyframes giftIdle{
+    0%,100%{ transform: scale(1) rotate(-3deg); }
+    50%{ transform: scale(1.06) rotate(3deg); }
+  }
+  .gift-box.opened{
+    animation: giftPop 0.5s ease forwards;
+  }
+  @keyframes giftPop{
+    0%{ transform: scale(1); }
+    40%{ transform: scale(1.35) rotate(8deg); }
+    100%{ transform: scale(0); }
+  }
+  .gift-caption{
+    margin-top:18px;
+    font-weight:700;
+    font-size:1.15rem;
+    color: var(--deep-rose);
+    animation: caption-wiggle 1.8s ease-in-out infinite;
+  }
+  @keyframes caption-wiggle{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-6px); }
+  }
+  .gift-message{
+    z-index:5;
+    font-family:'Dancing Script', cursive;
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    color: var(--deep-rose);
+    opacity:0;
+    max-width: 640px;
+  }
+  .gift-message.show{
+    opacity:1;
+    animation: heroPop 0.8s ease;
+  }
+
+  /* ---------- SLIDE 3 ---------- */
+  #slide3{
+    background: linear-gradient(160deg, #FFEAF1 0%, #FFD7E8 45%, #F6D6FF 100%);
+    position:relative;
+  }
+  .love-blob{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(50px);
+    opacity:0.55;
+    z-index:0;
+    animation-name: blobFloat;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  @keyframes blobFloat{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(24px,-30px) scale(1.12); }
+  }
+  .love-particle{
+    position:absolute;
+    font-size:18px;
+    z-index:1;
+    opacity:0.8;
+    animation-name: bob;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    user-select:none;
+  }
+  .question-card{
+    position:relative;
+    z-index:5;
+    max-width: 600px;
+    width: 92%;
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 32px;
+    padding: 48px 40px 42px;
+    box-shadow: 0 20px 50px rgba(201,79,104,0.22);
+    animation: heroPop 0.8s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .card-icon{
+    font-size: 2.4rem;
+    margin-bottom: 6px;
+    animation: bob 3s ease-in-out infinite;
+  }
+  .question-eyebrow{
+    font-family:'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--rose);
+    margin-bottom: 10px;
+  }
+  .question-text{
+    font-size: clamp(1.3rem, 4.2vw, 1.95rem);
+    font-weight:700;
+    color: var(--ink);
+    line-height:1.48;
+    margin-bottom: 6px;
+  }
+  .card-divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width: 100%;
+    max-width: 260px;
+    margin: 22px 0 30px;
+  }
+  .card-divider span:not(.divider-heart){
+    flex:1;
+    height:1px;
+    background: linear-gradient(90deg, transparent, rgba(201,79,104,0.4), transparent);
+  }
+  .divider-heart{
+    color: var(--rose);
+    font-size:1.1rem;
+    flex:none;
+  }
+  .btn-row{
+    position:relative;
+    display:flex;
+    gap:22px;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height: 78px;
+  }
+  .choice-btn{
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:16px 40px;
+    border-radius:50px;
+    border:none;
+    cursor:pointer;
+    letter-spacing:0.3px;
+  }
+  #yesBtn{
+    background: linear-gradient(135deg, #FF95A8 0%, var(--rose) 55%, var(--deep-rose) 100%);
+    color:white;
+    box-shadow: 0 10px 26px rgba(201,79,104,0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, font-size 0.25s ease, padding 0.25s ease;
+    animation: yesGlow 2.2s ease-in-out infinite;
+  }
+  @keyframes yesGlow{
+    0%,100%{ box-shadow: 0 10px 26px rgba(201,79,104,0.45); }
+    50%{ box-shadow: 0 10px 34px rgba(201,79,104,0.7); }
+  }
+  #yesBtn:hover{ transform: translateY(-3px) scale(1.06); }
+  #noBtn{
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px);
+    color: var(--deep-rose);
+    border: 1.5px solid rgba(232,99,125,0.55);
+    position:absolute;
+    left: calc(50% + 90px);
+    transition: transform 0.18s ease, left 0.25s ease, top 0.25s ease, opacity 0.18s ease;
+  }
+  .no-note{
+    margin-top: 18px;
+    font-size:0.9rem;
+    color: var(--deep-rose);
+    opacity:0.85;
+    z-index:5;
+    font-weight:600;
+  }
+  .confetti-piece{
+    position:absolute;
+    top:-20px;
+    font-size:20px;
+    z-index:6;
+    animation-name: fall;
+    animation-timing-function: ease-in;
+    animation-iteration-count:1;
+  }
+
+  /* ---------- SLIDE 4 ---------- */
+  #slide4{
+    background: linear-gradient(160deg, #2B1E28 0%, #4A2E3E 100%);
+    color:white;
+  }
+  .final-title{
+    font-family:'Dancing Script', cursive;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    color: var(--gold);
+    margin-bottom: 8px;
+    z-index:5;
+  }
+  .final-sub{
+    font-size:0.95rem;
+    opacity:0.8;
+    margin-bottom:22px;
+    z-index:5;
+    max-width:520px;
+  }
+  .video-frame{
+    width: min(88vw, 520px);
+    aspect-ratio: 16/9;
+    background: rgba(255,255,255,0.06);
+    border: 2px dashed rgba(255,255,255,0.3);
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    z-index:5;
+    position:relative;
+  }
+  .video-frame video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+  }
+  .picker-label{
+    cursor:pointer;
+    font-weight:700;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding:10px 20px;
+    border-radius:30px;
+    font-size:0.85rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .picker-label:hover{ background: var(--gold); color:#3a2a1f; }
+  input[type="file"]{ display:none; }
+  .final-heart{
+    position:absolute;
+    font-size:16px;
+    color: var(--gold);
+    opacity:0.5;
+    animation-name: bob;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    z-index:1;
+  }
+
+  ./* ===== LETTER ===== */
+
+.letter-container{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    z-index:5;
+}
+
+.envelope{
+    font-size:90px;
+    cursor:pointer;
+    transition:.5s;
+    animation:giftIdle 2s infinite;
+}
+
+.envelope.hide{
+    transform:scale(0);
+    opacity:0;
+}
+
+.letter{
+
+    width:min(90vw,600px);
+
+    background:white;
+
+    color:#4A3B42;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+    transform:translateY(30px);
+
+    opacity:0;
+
+    transition:.8s;
+}
+
+.letter.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.letter h2{
+
+    margin-bottom:20px;
+
+    color:#C94F68;
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:2rem;
+
+}
+
+.letter p{
+
+    text-align:left;
+
+    line-height:1.9;
+
+    white-space:pre-line;
+
+    font-size:1rem;
+
+}
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- SLIDE 1 -->
+  <section class="slide active" id="slide1">
+    <div class="hero-text">Halloo Desiana</div>
+    <div class="hero-sub">ada sesuatu yang pengen aku kasih tau ke kamu...</div>
+    <button class="next-btn" onclick="goTo(2)">Lanjut &rarr;</button>
+  </section>
+
+  <!-- SLIDE 2 -->
+<section class="slide" id="slide2">
+    <div class="gift-wrap">
+      <div class="gift-box" id="giftBox" onclick="openGift()">🎁</div>
+      <div class="gift-caption" id="giftCaption">Pencet kotak ini</div>
+      <div class="gift-message" id="giftMessage">
+        kira-kira isinya apaan yaa? 🤔
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 -->
+  <section class="slide" id="slide3">
+    <div class="question-card">
+      <div class="card-icon">💌</div>
+      <div class="question-eyebrow">satu pertanyaan penting...</div>
+      <div class="question-text">Kamu mau kalo kita lebih dari temenan level yang sangat absurd itu? 👀</div>
+      <div class="card-divider">
+        <span></span><span class="divider-heart">♡</span><span></span>
+      </div>
+      <div class="btn-row">
+        <button id="yesBtn" onclick="sayYes()">Yes</button>
+        <button id="noBtn" onmouseenter="dodge()" onclick="dodge()" ontouchstart="dodgeTouch(event)">No</button>
+      </div>
+      <div class="no-note" id="noNote">psst, coba pencet salah satunya 😏</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide4">
+
+    <div class="final-title">Untuk Desiana ❤️</div>
+  
+    <div class="letter-container">
+  
+        <div class="envelope" id="envelope" onclick="openLetter()">
+            💌
+        </div>
+  
+        <div class="letter" id="letter">
+  
+            <h2>Hai Desiana 🤍</h2>
+  
+            <p id="typingText"></p>
+  
+        </div>
+  
+    </div>
+  
+  </section>
+</div>
+
+<div class="dots">
+  <div class="dot on" id="dot1"></div>
+  <div class="dot" id="dot2"></div>
+  <div class="dot" id="dot3"></div>
+  <div class="dot" id="dot4"></div>
+</div>
+
+<script>
+/* ---------- NAVIGATION ---------- */
+function goTo(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById('slide'+n).classList.add('active');
+  document.querySelectorAll('.dot').forEach(d=>d.classList.remove('on'));
+  document.getElementById('dot'+n).classList.add('on');
+}
+
+/* ---------- SLIDE 1 : FLOWERS ---------- */
+const flowerEmojis = ['🌸','🌷','🌺','💮','🌼'];
+const slide1 = document.getElementById('slide1');
+for(let i=0;i<24;i++){
+  const f = document.createElement('div');
+  f.className='flower';
+  f.textContent = flowerEmojis[Math.floor(Math.random()*flowerEmojis.length)];
+  f.style.left = Math.random()*100+'%';
+  f.style.fontSize = (18+Math.random()*22)+'px';
+  const dur = 6+Math.random()*8;
+  f.style.animationDuration = dur+'s';
+  f.style.animationDelay = (Math.random()*8)+'s';
+  slide1.appendChild(f);
+}
+
+/* ---------- SLIDE 2 : BACKGROUND EMOJI + GIFT ---------- */
+const bgEmojis = ['💕','✨','🍬','🎀','💗','🧸','🍭'];
+const slide2 = document.getElementById('slide2');
+for(let i=0;i<18;i++){
+  const e = document.createElement('div');
+  e.className='bg-emoji';
+  e.textContent = bgEmojis[Math.floor(Math.random()*bgEmojis.length)];
+  e.style.left = Math.random()*94+'%';
+  e.style.top = Math.random()*88+'%';
+  e.style.animationDuration = (2.5+Math.random()*3)+'s';
+  e.style.animationDelay = (Math.random()*3)+'s';
+  slide2.appendChild(e);
+}
+
+function openGift(){
+  const box = document.getElementById('giftBox');
+  const caption = document.getElementById('giftCaption');
+  const message = document.getElementById('giftMessage');
+  if(box.classList.contains('opened')) return;
+  box.classList.add('opened');
+  caption.style.opacity = '0';
+  setTimeout(()=>{
+    message.classList.add('show');
+  }, 350);
+  setTimeout(()=>{ goTo(3); }, 2400);
+}
+
+/* ---------- SLIDE 3 : LOVE BACKGROUND ---------- */
+const slide3 = document.getElementById('slide3');
+const blobColors = ['#FFB6C8','#E8637D','#CDB4E0','#F6C453'];
+const blobSizes = [220,160,260,140];
+const blobPos = [
+  {top:'-8%', left:'-6%'}, {top:'70%', left:'80%'},
+  {top:'8%', left:'78%'}, {top:'72%', left:'6%'}
+];
+for(let i=0;i<4;i++){
+  const b = document.createElement('div');
+  b.className='love-blob';
+  b.style.width = blobSizes[i]+'px';
+  b.style.height = blobSizes[i]+'px';
+  b.style.background = blobColors[i];
+  b.style.top = blobPos[i].top;
+  b.style.left = blobPos[i].left;
+  b.style.animationDuration = (7+Math.random()*4)+'s';
+  b.style.animationDelay = (Math.random()*3)+'s';
+  slide3.appendChild(b);
+}
+const loveEmojis = ['💗','💞','🩷','✨','🤍','💫'];
+for(let i=0;i<16;i++){
+  const p = document.createElement('div');
+  p.className='love-particle';
+  p.textContent = loveEmojis[Math.floor(Math.random()*loveEmojis.length)];
+  p.style.left = Math.random()*94+'%';
+  p.style.top = Math.random()*90+'%';
+  p.style.fontSize = (14+Math.random()*14)+'px';
+  p.style.animationDuration = (2.5+Math.random()*3)+'s';
+  p.style.animationDelay = (Math.random()*3)+'s';
+  slide3.appendChild(p);
+}
+
+/* ---------- SLIDE 3 : NO BUTTON DODGES, YES ALWAYS WINS ---------- */
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const noNote = document.getElementById('noNote');
+const btnRow = document.querySelector('.btn-row');
+let dodgeCount = 0;
+const notes = [
+  "eh kok geser 👀",
+  "lho kabur lagi",
+  "yaudah pencet yang Yes aja yaa 😅",
+  "no nya emang gabisa dipencet kok hehe",
+  "tombolnya emang didesain buat lari🏃‍♀️",
+  "capek gak sih nyariin 'No' nya wkwk",
+  "udah, Yes aja, dijamin gak nyesel"
+];
+
+function dodge(){
+  dodgeCount++;
+  const rowW = btnRow.clientWidth;
+  const rowH = btnRow.clientHeight;
+  const maxX = rowW/2 - 60;
+  const maxY = 40;
+  const x = (Math.random()*2-1) * maxX;
+  const y = (Math.random()*2-1) * maxY;
+  noBtn.style.left = 'calc(50% + ' + x + 'px)';
+  noBtn.style.top = y + 'px';
+  noBtn.style.transform = 'translateY(-50%) rotate(' + (Math.random()*40-20) + 'deg)';
+
+  // yes gets a little bigger and more inviting each time
+  const growth = Math.min(dodgeCount*3, 30);
+  yesBtn.style.fontSize = (1.05 + growth*0.01) + 'rem';
+  yesBtn.style.padding = (16+growth*0.4) + 'px ' + (38+growth) + 'px';
+
+  noNote.textContent = notes[Math.min(dodgeCount-1, notes.length-1)];
+}
+
+function dodgeTouch(e){
+  e.preventDefault();
+  dodge();
+}
+
+function sayYes(){
+    burstConfetti();
+
+    setTimeout(()=>{
+        goTo(4);
+    },1200);
+}
+
+function burstConfetti(){
+  const pieces = ['🎉','💗','✨','🌸','🎊','💕'];
+  for(let i=0;i<28;i++){
+    const c = document.createElement('div');
+    c.className='confetti-piece';
+    c.textContent = pieces[Math.floor(Math.random()*pieces.length)];
+    c.style.left = Math.random()*100+'%';
+    c.style.fontSize = (16+Math.random()*18)+'px';
+    c.style.animationDuration = (1.4+Math.random()*1.2)+'s';
+    document.getElementById('slide3').appendChild(c);
+    setTimeout(()=>c.remove(), 3000);
+  }
+}
+
+/* ---------- SLIDE 4 : FLOATING HEARTS + VIDEO PICKER ---------- */
+const slide4 = document.getElementById('slide4');
+for(let i=0;i<14;i++){
+  const h = document.createElement('div');
+  h.className='final-heart';
+  h.textContent='♡';
+  h.style.left = Math.random()*94+'%';
+  h.style.top = Math.random()*88+'%';
+  h.style.animationDuration = (2.5+Math.random()*3)+'s';
+  h.style.animationDelay = (Math.random()*3)+'s';
+  slide4.insertBefore(h, slide4.firstChild);
+}
+
+function loadVideo(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const url = URL.createObjectURL(file);
+  const player = document.getElementById('videoPlayer');
+  player.src = url;
+  player.style.display = 'block';
+  document.getElementById('pickerLabel').style.display = 'none';
+  player.play().catch(()=>{});
+}
+const message = `
+
+Aku cuma mau bilang...
+Makasih yaa, udah mau nerima aku.
+Jujur, dari awal aku nggak pernah nyangka kalau kita bisa sedekat ini. Diawali dari awal maba, 2024-2025, kamu aku selalu cuekin. Eh 2026 kita malah deket bangettttttt hihihi.
+Semoga setelah hari ini kita bisa bikin lebih banyak cerita bareng.
+Aku mungkin bukan orang yang sempurna. Tapi aku akan selalu berusaha bikin kamu bahagia.
+Pokoknya apapun tentang kita berdua, akan selalu aku usahain yaa.
+Terima kasih ya, Sayangg 🤍
+Akuu sayang banget sama kamuu 🤍
+`;
+
+function openLetter(){
+
+    document.getElementById("envelope").classList.add("hide");
+
+    const letter=document.getElementById("letter");
+
+    setTimeout(()=>{
+
+        letter.classList.add("show");
+
+        typeMessage();
+
+    },400);
+
+}
+
+function typeMessage(){
+
+    const el=document.getElementById("typingText");
+
+    let i=0;
+
+    function typing(){
+
+        if(i<message.length){
+
+            el.innerHTML+=message.charAt(i);
+
+            i++;
+
+            setTimeout(typing,35);
+
+        }
+
+    }
+
+    typing();
+
+}
+</script>
+
+</body>
+</html>
