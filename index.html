@@ -684,27 +684,30 @@ function loadVideo(e){
   player.play().catch(()=>{});
 }
 const message = `Aku cuma mau bilang...
-Makasih yaa, kamuu udah mau nerima aku. Jujur, dari awal aku nggak pernah nyangka kalau kita bisa sedekat ini. Diawali dari awal maba, 2024-2025, kamu aku selalu cuekin. Eh April 2026 setelah foto abis arak-arakan kita malah deket bangettttttt hihihi.
-Semoga setelah hari ini kita bisa bikin lebih banyak cerita bareng. Aku mungkin bukan orang yang sempurna sayang, tapi aku akan selalu berusaha bikin kamu bahagia dan menjadii sosok pribadi yang baik untuk kamuu.
+Makasih yaa, udah mau nerima aku.Jujur, dari awal aku nggak pernah nyangka kalau kita bisa sedekat ini. Diawali dari awal maba, 2024-2025, kamu aku selalu cuekin. Eh 2026 kita malah deket bangettttttt hihihi.
+Semoga setelah hari ini kita bisa bikin lebih banyak cerita bareng. Aku mungkin bukan orang yang sempurna. Tapi aku akan selalu berusaha bikin kamu bahagia.
 Pokoknya apapun tentang kita berdua, akan selalu aku usahain yaa.
-
 Terima kasih ya, Sayangg 🤍
-Akuu sayangg banget samaa kamuuuu 🤍
+Akuu sayang banget sama kamuu 🤍
 `;
 
 function openLetter(){
 
-    document.getElementById("envelope").classList.add("hide");
+// Mulai memutar musik
+const music = document.getElementById("bgMusic");
+music.play().catch(err => console.log(err));
 
-    const letter=document.getElementById("letter");
+document.getElementById("envelope").classList.add("hide");
 
-    setTimeout(()=>{
+const letter=document.getElementById("letter");
 
-        letter.classList.add("show");
+setTimeout(()=>{
 
-        typeMessage();
+    letter.classList.add("show");
 
-    },400);
+    typeMessage();
+
+},400);
 
 }
 
@@ -732,6 +735,10 @@ function typeMessage(){
 
 }
 </script>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
